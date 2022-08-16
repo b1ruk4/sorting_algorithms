@@ -24,22 +24,22 @@ int len_list(listint_t *h)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *curr = NULL, *one = NULL;
+	listint_t *li = NULL, *one = NULL;
 	listint_t *two = NULL, *three = NULL, *four = NULL;
 
 	if (!list || !(*list) || len_list(*list) < 2)
 		return;
 
-	curr = *list;
+	li = *list;
 
-	while (curr)
+	while (li)
 	{
-		if (curr->prev && curr->n < curr->prev->n)
+		if (li->prev && li->n < li->prev->n)
 		{
-			one = curr->prev->prev;
-			two = curr->prev;
-			three = curr;
-			four = curr->next;
+			one = li->prev->prev;
+			two = li->prev;
+			three = li;
+			four = li->next;
 
 			two->next = four;
 			if (four)
@@ -51,11 +51,11 @@ void insertion_sort_list(listint_t **list)
 			else
 				*list = three;
 			two->prev = three;
-			curr = *list;
+			li = *list;
 			print_list(*list);
 			continue;
 		}
 		else
-			curr = curr->next;
+			li = li->next;
 	}
 }
